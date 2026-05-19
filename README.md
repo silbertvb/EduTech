@@ -1,17 +1,17 @@
 ﻿# EduTech
 
-Plataforma e-learning fullâ€‘stack con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
+Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
 
-## ðŸ§© CaracterÃ­sticas principales
+## Características principales
 
-- âœ… Autenticacion con **Google OAuth 2.0** (Passport), cuenta normal con email/password y accesos demo
-- âœ… Control de acceso por roles (RBAC): **alumno**, **profesor**, **administrador**
-- âœ… CRUD completo de **cursos**, **lecciones**, **tests** y **preguntas**
-- âœ… Registro de resultados y calificaciones por usuario
-- âœ… **Backoffice** independiente para administradores (`/admin`)
-- âœ… SPA React que consume la API (`/api/*`) con proxy integrado de Vite
+- Autenticación con **Google OAuth 2.0** (Passport), cuenta normal con email/password y accesos demo
+- Control de acceso por roles (RBAC): **alumno**, **profesor**, **administrador**
+- CRUD completo de **cursos**, **lecciones**, **tests** y **preguntas**
+- Registro de resultados y calificaciones por usuario
+- **Backoffice** independiente para administradores (`/admin`)
+- SPA React que consume la API (`/api/*`) con proxy integrado de Vite
 
-## ðŸ§° Requisitos
+## Requisitos
 
 - Node.js **18+**
 - Docker (para la base de datos PostgreSQL)
@@ -19,7 +19,7 @@ Plataforma e-learning fullâ€‘stack con **React + Vite** en el frontend y **
 
 Las dependencias de todos los workspaces se instalan en el `node_modules` raÃ­z mediante **npm workspaces**. No hay `node_modules` individuales por app.
 
-## ðŸš€ ConfiguraciÃ³n local (desarrollo)
+## Configuración local (desarrollo)
 
 ### 1. Instalar dependencias
 
@@ -29,7 +29,7 @@ npm install
 
 ### 2. Variables de entorno
 
-Crea un `.env` en la raÃ­z con:
+Crea un `.env` en la raíz con:
 
 ```env
 # PostgreSQL
@@ -39,7 +39,7 @@ DB_USER=postgres
 DB_PASSWORD=postgres
 DB_NAME=elearning_platform
 
-# SesiÃ³n
+# Sesión
 SESSION_SECRET=una_clave_segura
 
 # Google OAuth
@@ -52,7 +52,7 @@ CLIENT_ORIGIN=http://localhost:5173
 
 # Backoffice admin
 ADMIN_USER=admin
-ADMIN_PASSWORD=tu_contraseÃ±a_segura
+ADMIN_PASSWORD=tu_contraseña_segura
 ```
 
 ### 3. Arrancar la base de datos
@@ -61,7 +61,7 @@ ADMIN_PASSWORD=tu_contraseÃ±a_segura
 docker compose up -d
 ```
 
-Levanta PostgreSQL 17 en el puerto `5434` e inicializa el esquema automÃ¡ticamente.
+Levanta PostgreSQL 17 en el puerto `5434` e inicializa el esquema automáticamente.
 
 ### 4. Arrancar backend y frontend
 
