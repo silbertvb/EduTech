@@ -17,7 +17,7 @@ Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express
 - Docker (para la base de datos PostgreSQL)
 
 
-Las dependencias de todos los workspaces se instalan en el `node_modules` raÃ­z mediante **npm workspaces**. No hay `node_modules` individuales por app.
+Las dependencias de todos los workspaces se instalan en el `node_modules` raíz mediante **npm workspaces**. No hay `node_modules` individuales por app.
 
 ## Configuración local (desarrollo)
 
@@ -144,26 +144,26 @@ Estos usuarios estan precargados en la base de datos y documentados en `credenci
 - `profesor`: solo ve y gestiona sus propios cursos.
 - `administrador`: tiene acceso completo a la plataforma y al backoffice.
 
-## ðŸ” Backoffice (`/admin`)
+## Backoffice (`/admin`)
 
-Acceso independiente del OAuth de Google, protegido por usuario y contraseÃ±a definidos en `.env`.
+Acceso independiente del OAuth de Google, protegido por usuario y contraseña definidos en `.env`.
 
 Desde el backoffice el administrador puede:
 - Listar todos los usuarios
 - Cambiar el rol de cualquier usuario
 - Eliminar usuarios
 
-## ðŸ”Œ Google OAuth â€” URIs autorizadas
+## Google OAuth — URIs autorizadas
 
 En Google Cloud Console configura:
 
 - **Origen JavaScript autorizado:** `http://localhost:3000`
 - **URI de redireccionamiento autorizado:** `http://localhost:3000/auth/google/callback`
 
-## ðŸ”Œ API â€” Endpoints principales
+## API — Endpoints principales
 
-- **AutenticaciÃ³n**
-  - `GET /auth/google?role=alumno|profesor` -> inicia login o registro con Google segun el rol elegido
+- **Autenticación**
+  - `GET /auth/google?role=alumno|profesor` -> inicia login o registro con Google según el rol elegido
   - `GET /auth/google/callback` -> callback OAuth
   - `POST /auth/local/register` -> crea cuenta normal con email/password y rol `alumno` o `profesor`
   - `POST /auth/local/login` -> inicia sesion con cuenta normal
@@ -171,7 +171,7 @@ En Google Cloud Console configura:
   - `GET /auth/logout` -> cerrar sesion
 
 - **Admin backoffice**
-  - `POST /api/admin/login` â†’ login con credenciales del `.env`
+  - `POST /api/admin/login` → login con credenciales del `.env`
   - `POST /api/admin/logout`
   - `GET /api/admin/me`
 
@@ -195,44 +195,44 @@ En Google Cloud Console configura:
   - `PUT /api/users/:id`
   - `DELETE /api/users/:id`
 
-## ðŸ“‹ Changelog
+## Changelog
 
 ### `refactor-ui`
 
 #### Routing y Layout
-- **Rutas anidadas con `<Outlet />`** â€” `Layout` migrado de `children` a `<Outlet />` de React Router. `ProtectedLayout` envuelve todas las rutas autenticadas y redirige a `/login` si no hay sesiÃ³n.
-- **`/admin` fuera del `ProtectedLayout`** â€” Corregido bug por el que navegar a `/admin` sin sesiÃ³n OAuth redirigÃ­a al login de usuario en lugar de mostrar el login del backoffice.
-- **SeparaciÃ³n de vistas por rol en `/courses/:id`** â€” Renderiza `CourseDetailTeacher` para profesores/admins y `CourseDetailPage` para alumnos.
+- **Rutas anidadas con `<Outlet />`** — `Layout` migrado de `children` a `<Outlet />` de React Router. `ProtectedLayout` envuelve todas las rutas autenticadas y redirige a `/login` si no hay sesión.
+- **`/admin` fuera del `ProtectedLayout`** — Corregido bug por el que navegar a `/admin` sin sesión OAuth redirigía al login de usuario en lugar de mostrar el login del backoffice.
+- **Separación de vistas por rol en `/courses/:id`** — Renderiza `CourseDetailTeacher` para profesores/admins y `CourseDetailPage` para alumnos.
 
 #### `useAuth`
-- **Instancia Ãºnica** â€” `useAuth()` solo se llama en `App.jsx`. El `user` y `logout` se pasan como props a `Layout` y `Header`, eliminando el parpadeo causado por mÃºltiples instancias con estado independiente.
-- **Bucle infinito corregido** â€” El `useEffect` tenÃ­a `[user]` como dependencia, provocando re-fetch continuo. Corregido a `[]`.
-- **Logout simplificado** â€” Eliminado `redirect()` (solo vÃ¡lido en loaders/actions). `setUser(null)` provoca que `ProtectedLayout` redirija automÃ¡ticamente.
+- **Instancia única** — `useAuth()` solo se llama en `App.jsx`. El `user` y `logout` se pasan como props a `Layout` y `Header`, eliminando el parpadeo causado por múltiples instancias con estado independiente.
+- **Bucle infinito corregido** — El `useEffect` tenía `[user]` como dependencia, provocando re-fetch continuo. Corregido a `[]`.
+- **Logout simplificado** — Eliminado `redirect()` (solo válido en loaders/actions). `setUser(null)` provoca que `ProtectedLayout` redirija automáticamente.
 
 #### Header
-- RediseÃ±ado con iconos de `lucide-react`.
+- Rediseñado con iconos de `lucide-react`.
 - Recibe `user` y `logout` como props en lugar de llamar a `useAuth()` directamente.
 
 #### Backoffice (`/admin`)
-- **RediseÃ±o completo** â€” tema oscuro (`#0f172a`), sidebar fijo, topbar, tabla de usuarios con buscador en tiempo real y 4 tarjetas de estadÃ­sticas calculadas dinÃ¡micamente (Total, Alumnos, Profesores, Admins).
+- **Rediseño completo** — tema oscuro (`#0f172a`), sidebar fijo, topbar, tabla de usuarios con buscador en tiempo real y 4 tarjetas de estadísticas calculadas dinámicamente (Total, Alumnos, Profesores, Admins).
 - **Componentizado** en ficheros independientes dentro de `pages/admin/`: `AdminLogin`, `AdminSidebar`, `AdminTopbar`, `StatCard`, `UsersSection` (con `UserRow` interno).
 
 ---
 
-## ðŸ“¦ ProducciÃ³n
+## Producción
 
 ```bash
 npm run client:build
 npm -w edutech run start
 ```
 
-## ðŸ§¹ Scripts disponibles (raÃ­z)
+## Scripts disponibles (raíz)
 
-| Script | DescripciÃ³n |
+| Script | Descripción |
 |---|---|
 | `npm run dev` | Arranca backend + frontend en paralelo |
 | `npm run server` | Solo el backend (nodemon) |
 | `npm run client:dev` | Solo el frontend (Vite) |
-| `npm run client:build` | Build de producciÃ³n del frontend |
-| `npm run client:start` | Preview del build de producciÃ³n |
+| `npm run client:build` | Build de producción del frontend |
+| `npm run client:start` | Preview del build de producción |
 
