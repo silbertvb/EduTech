@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+version: '3.8'
 services:
   db:
     image: postgres:17-alpine
@@ -18,28 +18,19 @@ services:
       timeout: 5s
       retries: 5
 
-volumes:
-  edutech:
-=======
-services:
-  db:
-    image: postgres:17-alpine
-    restart: unless-stopped
+  backend:
+    build: 
+      context: ./apps/backend/
+      dockerfile: Dockerfile
+    restart: always
     environment:
-      POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-elearning_platform}
+      DATABASE_URL: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-elearning_platform}
+      PORT: 3000
     ports:
-      - "5434:5432"
-    volumes:
-      - edutech:/var/lib/postgresql/data
-      - ./apps/backend/database/elearning_platform.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-elearning_platform}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   edutech:
->>>>>>> fedc12a308713d0f718e2b7c4093b1ac9d0d81ba
