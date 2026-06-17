@@ -1,6 +1,29 @@
 ﻿# EduTech
 
-Plataforma e-learning full-stack https://edutech-production-703d.up.railway.app/  con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
+Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
+
+## 🚀 Demo en vivo
+
+🔗 [EduTech_ Aprende a tu ritmo](https://edutech-production-703d.up.railway.app)
+
+---
+
+## 👀 Guía rápida para revisar el proyecto
+
+Al acceder verás la pantalla de login. **Desplázate hacia abajo** para encontrar 
+las opciones de acceso demo — no necesitas crear cuenta ni usar Google.
+
+> 💡 **Recomendación:** Empieza con **Demo Alumno** para ver la experiencia 
+> completa del usuario final. Luego prueba Profesor o Admin para explorar 
+> el backoffice.
+
+### Opciones demo disponibles:
+
+| Rol                  |                                                             Qué puedes explorar                                                                  |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------    |
+| 🔴 **Demo Admin**    | Panel de administración completo: gestión de usuarios, roles y configuración global de la plataforma                                             |
+| 🟡 **Demo Profesor** | Creación y gestión de cursos, lecciones, tests y preguntas                                                                                       |
+| 🟢 **Demo Alumno**   | ⭐ **Recomendado** — Experiencia de usuario final con banner estilizado, catálogo de cursos, sección "Mis cursos", progreso y tests interactivos |
 
 ## Características principales
 
