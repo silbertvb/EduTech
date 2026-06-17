@@ -1,6 +1,6 @@
 ﻿# EduTech
 
-https://github.com/silbertvb/EduTech Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
+Plataforma e-learning full-stack https://edutech-production-703d.up.railway.app/  con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
 
 ## Características principales
 
