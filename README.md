@@ -105,13 +105,13 @@ Este backup incluye el esquema y los datos actuales de la plataforma: usuarios, 
 El archivo se genero desde el contenedor de PostgreSQL con:
 
 ```bash
-docker exec tfg_edutech-db-1 pg_dump -U postgres -d elearning_platform > edutech_backup.sql
+docker exec x_edutech-db-1 pg_dump -U postgres -d elearning_platform > edutech_backup.sql
 ```
 
 Para restaurarlo en una base de datos existente:
 
 ```bash
-docker exec -i tfg_edutech-db-1 psql -U postgres -d elearning_platform < edutech_backup.sql
+docker exec -i x_edutech-db-1 psql -U postgres -d elearning_platform < edutech_backup.sql
 ```
 
 Ademas del backup completo, el proyecto incluye el archivo `edutech_cursos_ejercicios.sql`.
@@ -121,15 +121,8 @@ Este segundo archivo es una exportacion parcial pensada para conservar y compart
 Se genero con:
 
 ```bash
-docker exec tfg_edutech-db-1 pg_dump -U postgres -d elearning_platform -t courses -t lessons -t lesson_attachments -t tests -t questions -t results -t user_courses > edutech_cursos_ejercicios.sql
+docker exec x_edutech-db-1 pg_dump -U postgres -d elearning_platform -t courses -t lessons -t lesson_attachments -t tests -t questions -t results -t user_courses > edutech_cursos_ejercicios.sql
 ```
-
-## Archivos de entrega
-
-En la raiz del proyecto se incluyen dos archivos de texto requeridos para la entrega:
-
-- `url.txt`: contiene la URL de acceso a la aplicacion. Actualmente apunta al entorno local de desarrollo (`http://localhost:5173/`) y debe actualizarse si se despliega en un hosting publico.
-- `credenciales.txt`: contiene las credenciales necesarias para acceder al backoffice de administracion y a los usuarios demo con distintos perfiles (`administrador`, `profesor` y `alumno`).
 
 ## Registro, acceso y roles
 
@@ -151,7 +144,7 @@ El usuario tambien puede crear una cuenta sin Google desde la seccion **cuenta n
 - La contrasena se guarda en base de datos como hash, no en texto plano.
 - Una vez creada la cuenta, puede volver a entrar con email y password desde la opcion **Entrar**.
 
-### Acceso demo para evaluacion
+### Cuentas para pruebas
 
 La pantalla de login mantiene una seccion discreta de accesos demo:
 
@@ -219,8 +212,6 @@ En Google Cloud Console configura:
   - `DELETE /api/users/:id`
 
 ## Changelog
-
-### `refactor-ui`
 
 #### Routing y Layout
 - **Rutas anidadas con `<Outlet />`** — `Layout` migrado de `children` a `<Outlet />` de React Router. `ProtectedLayout` envuelve todas las rutas autenticadas y redirige a `/login` si no hay sesión.
