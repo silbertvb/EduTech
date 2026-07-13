@@ -25,11 +25,10 @@ if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1);
 }
 
-// CORS — acepta localhost, tu dominio de Railway y dominios ngrok
+// CORS — acepta localhost y dominios ngrok dinámicamente
 const ALLOWED_ORIGINS = [
   process.env.CLIENT_ORIGIN || 'http://localhost:5173',
   'http://localhost:5173',
-  'https://edutech-production-703d.up.railway.app' // <--- AÑADE ESTA LÍNEA
 ];
 app.use(
   cors({
