@@ -2,6 +2,22 @@
 
 Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
 
+<!-- TODO: añadir sección "🚀 Demo en vivo" con el enlace una vez esté desplegado (migración a Neon + Render pendiente). -->
+
+## 👀 Guía rápida para revisar el proyecto
+
+Al acceder verás la pantalla de login. Desplázate hacia abajo para encontrar las opciones de acceso demo — no necesitas crear cuenta ni usar Google.
+
+> 💡 **Recomendación:** empieza con **Demo Alumno** para ver la experiencia completa del usuario final. Luego prueba **Profesor** o **Admin** para explorar el backoffice.
+
+**Opciones demo disponibles:**
+
+| Rol | Qué puedes explorar |
+|---|---|
+| 🔴 Demo Admin | Panel de administración completo: gestión de usuarios, roles y configuración global de la plataforma |
+| 🟡 Demo Profesor | Creación y gestión de cursos, lecciones, tests y preguntas |
+| 🟢 Demo Alumno ⭐ | Recomendado — Experiencia de usuario final con banner estilizado, catálogo de cursos, sección "Mis cursos", progreso y tests interactivos |
+
 ## 📸 Capturas
 
 ### Vista del alumno
