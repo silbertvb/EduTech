@@ -2,6 +2,17 @@
 
 Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
 
+## 📸 Capturas
+
+### Vista del alumno
+![Home del alumno](docs/screenshots/home-alumno.jpg)
+
+### Lección con contenido multimedia
+![Lección](docs/screenshots/leccion.jpg)
+
+### Test corregido con revisión de respuestas
+![Resultados de test](docs/screenshots/test-resultados.jpg)
+
 ## Características principales
 
 - Autenticación con **Google OAuth 2.0** (Passport), cuenta normal con email/password y accesos demo
@@ -45,7 +56,7 @@ SESSION_SECRET=una_clave_segura
 # Google OAuth
 GOOGLE_CLIENT_ID=...
 GOOGLE_CLIENT_SECRET=...
-GOOGLE_CALLBACK_URL=http://localhost:3000/auth/google/callback
+GOOGLE_CALLBACK_URL=http://localhost:5173/auth/google/callback
 
 # Frontend (para redirecciones tras login/logout)
 CLIENT_ORIGIN=http://localhost:5173
@@ -75,7 +86,9 @@ npm run dev
 
 ## Backup de base de datos
 
-El archivo `edutech_backup.sql`, ubicado en la raiz del proyecto, es una copia exportada de la base de datos PostgreSQL `elearning_platform`.
+<!-- TODO: edutech_backup.sql no esta presente en el repo actual (solo queda en commits antiguos). Regenerarlo con el comando de abajo y volver a subirlo, o quitar esta seccion si ya no se usa. -->
+
+El archivo `edutech_backup.sql` (no incluido actualmente en el repositorio — ver TODO arriba) es una copia exportada de la base de datos PostgreSQL `elearning_platform` que se genera bajo demanda.
 
 Este backup incluye el esquema y los datos actuales de la plataforma: usuarios, roles, cursos, imagenes de portada, lecciones, adjuntos multimedia de lecciones, tests, preguntas, inscripciones y resultados.
 
@@ -103,10 +116,11 @@ docker exec tfg_edutech-db-1 pg_dump -U postgres -d elearning_platform -t course
 
 ## Archivos de entrega
 
-En la raiz del proyecto se incluyen dos archivos de texto requeridos para la entrega:
+En la raiz del proyecto se incluye el archivo de texto requerido para la entrega:
 
 - `url.txt`: contiene la URL de acceso a la aplicacion. Actualmente apunta al entorno local de desarrollo (`http://localhost:5173/`) y debe actualizarse si se despliega en un hosting publico.
-- `credenciales.txt`: contiene las credenciales necesarias para acceder al backoffice de administracion y a los usuarios demo con distintos perfiles (`administrador`, `profesor` y `alumno`).
+
+Las credenciales de acceso (backoffice de administracion y usuarios demo) estan documentadas en la seccion [Acceso demo para evaluacion](#acceso-demo-para-evaluacion).
 
 ## Registro, acceso y roles
 
@@ -136,7 +150,13 @@ La pantalla de login mantiene una seccion discreta de accesos demo:
 - **Demo Profesor**: entra como `profesor`.
 - **Demo Alumno**: entra como `alumno`.
 
-Estos usuarios estan precargados en la base de datos y documentados en `credenciales.txt`.
+Estos usuarios estan precargados en la base de datos:
+
+| Rol | Email | Password |
+|---|---|---|
+| Administrador | admin@tfgdemo.com | Admin123! |
+| Profesor | profesor@tfgdemo.com | Profesor123! |
+| Alumno | alumno@tfgdemo.com | Alumno123! |
 
 ### Permisos principales
 
@@ -157,8 +177,8 @@ Desde el backoffice el administrador puede:
 
 En Google Cloud Console configura:
 
-- **Origen JavaScript autorizado:** `http://localhost:3000`
-- **URI de redireccionamiento autorizado:** `http://localhost:3000/auth/google/callback`
+- **Origen JavaScript autorizado:** `http://localhost:5173`
+- **URI de redireccionamiento autorizado:** `http://localhost:5173/auth/google/callback`
 
 ## API — Endpoints principales
 
