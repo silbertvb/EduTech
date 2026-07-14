@@ -194,6 +194,9 @@ Desde el backoffice el administrador puede:
 - Cambiar el rol de cualquier usuario
 - Eliminar usuarios
 
+> ⚠️ El login del backoffice (`ADMIN_USER`/`ADMIN_PASSWORD`) y la sesión de la app principal son sistemas de autenticación independientes. Para que la lista de usuarios cargue, primero inicia sesión en la app como **Demo Admin** (o cualquier cuenta con rol `administrador`) desde `/login`, y **luego**, en la misma pestaña, entra en `/admin` — ambas sesiones conviven en la misma cookie. Si entras directo a `/admin` sin haber iniciado sesión antes en la app, la sección de usuarios mostrará "No se pudieron cargar los usuarios".
+<!-- TODO: unificar ambos sistemas de login (que el login del backoffice también autentique con Passport, o que /api/users acepte session.isAdmin) -->
+
 ## Google OAuth — URIs autorizadas
 
 En Google Cloud Console configura:
