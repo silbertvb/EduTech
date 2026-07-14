@@ -273,8 +273,10 @@ El proyecto se despliega como un **único Web Service en Render**: Express sirve
 
 **Build Command:**
 ```bash
-npm install && npm run build
+npm install --include=dev && npm run build
 ```
+
+> Con `NODE_ENV=production` puesto (necesario para que Express sirva el build de React), `npm install` por defecto **omite** las `devDependencies` — y ahí vive `vite`, imprescindible para compilar el frontend. `--include=dev` fuerza a instalarlas igualmente durante el build, sin afectar al arranque en producción.
 
 **Start Command:**
 ```bash
