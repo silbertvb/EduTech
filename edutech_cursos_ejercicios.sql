@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict 50VInwiQJddFY6LcUj7yRhnyFbX9qpCaF04LXpi8sTtDWeXEbjKViaZNDE50vD3
+\restrict VPG4nkmszG2MurlkdhyiQ8PHEqcqovFEjTVDXu8pcQVoFyMN9d8f7sRK231NfHn
 
--- Dumped from database version 17.9
--- Dumped by pg_dump version 17.9
+-- Dumped from database version 17.10
+-- Dumped by pg_dump version 17.10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -311,9 +311,9 @@ ALTER TABLE ONLY public.tests ALTER COLUMN id SET DEFAULT nextval('public.tests_
 --
 
 COPY public.courses (id, title, description, created_by, created_at, cover_image) FROM stdin;
-1	HTML y CSS desde Cero: Crea Sitios Web Modernos y Responsivos	Aprende a desarrollar p├íginas web modernas desde cero utilizando HTML5 y CSS3, las tecnolog├¡as fundamentales del desarrollo frontend.\r\n\r\nEn este curso comenzar├ís comprendiendo la estructura b├ísica de una p├ígina web y avanzar├ís progresivamente hacia la creaci├│n de interfaces visuales profesionales, adaptables y responsivas.	1	2026-05-04 20:25:24.228883	/uploads/courses/1777926326279-WhatsApp_Image_2026-04-26_at_17.51.37__1_.jpeg
-2	JavaScript desde Cero: Programaci├│n Web Moderna e Interactiva	Aprende JavaScript desde cero y descubre c├│mo dar vida e interactividad a las p├íginas web mediante el lenguaje de programaci├│n m├ís utilizado en el desarrollo frontend moderno.\r\n\r\nEn este curso comenzar├ís comprendiendo los fundamentos de la programaci├│n y avanzar├ís progresivamente hacia el desarrollo de aplicaciones web din├ímicas utilizando JavaScript moderno (ES6+).	1	2026-05-04 20:30:15.461337	/uploads/courses/1777926616421-WhatsApp_Image_2026-04-26_at_17.51.37__3_.jpeg
-3	Python desde Cero: Aprende el Lenguaje del Futuro y Crea Proyectos Reales	Domina uno de los lenguajes de programaci├│n m├ís potentes y vers├ítiles del mundo actual. Este curso est├í dise├▒ado espec├¡ficamente para principiantes que desean transformar su carrera tecnol├│gica, partiendo desde los conceptos b├ísicos de sintaxis hasta el desarrollo de aplicaciones funcionales.	1	2026-05-04 20:38:00.346558	/uploads/courses/1777927081753-Gemini_Generated_Image_49q2ff49q2ff49q2.png
+1	HTML y CSS desde Cero: Crea Sitios Web Modernos y Responsivos	Aprende a desarrollar páginas web modernas desde cero utilizando HTML5 y CSS3, las tecnologías fundamentales del desarrollo frontend.\r\n\r\nEn este curso comenzarás comprendiendo la estructura básica de una página web y avanzarás progresivamente hacia la creación de interfaces visuales profesionales, adaptables y responsivas.	6	2026-05-04 20:25:24.228883	/uploads/courses/html-css.jpg
+2	JavaScript desde Cero: Programación Web Moderna e Interactiva	Aprende JavaScript desde cero y descubre cómo dar vida e interactividad a las páginas web mediante el lenguaje de programación más utilizado en el desarrollo frontend moderno.\r\n\r\nEn este curso comenzarás comprendiendo los fundamentos de la programación y avanzarás progresivamente hacia el desarrollo de aplicaciones web dinámicas utilizando JavaScript moderno (ES6+).	6	2026-05-04 20:30:15.461337	/uploads/courses/javascript.jpg
+3	Python desde Cero: Aprende el Lenguaje del Futuro y Crea Proyectos Reales	Domina uno de los lenguajes de programación más potentes y versátiles del mundo actual. Este curso está diseñado específicamente para principiantes que desean transformar su carrera tecnológica, partiendo desde los conceptos básicos de sintaxis hasta el desarrollo de aplicaciones funcionales.	6	2026-05-04 20:38:00.346558	/uploads/courses/python.jpg
 \.
 
 
@@ -322,7 +322,6 @@ COPY public.courses (id, title, description, created_by, created_at, cover_image
 --
 
 COPY public.lesson_attachments (id, lesson_id, type, filename, original_name, mime_type, url, created_at) FROM stdin;
-1	2	video	1777927734461-163491-827845629_medium.mp4	163491-827845629_medium.mp4	video/mp4	/uploads/lessons/1777927734461-163491-827845629_medium.mp4	2026-05-04 20:48:54.318429
 2	2	video_url	\N	\N	\N	https://www.youtube.com/watch?v=EFX4GQpTib0	2026-05-04 20:48:54.352153
 \.
 
@@ -332,7 +331,7 @@ COPY public.lesson_attachments (id, lesson_id, type, filename, original_name, mi
 --
 
 COPY public.lessons (id, course_id, title, content, order_number) FROM stdin;
-2	3	Introducci├│n a HTML: Estructura B├ísica de una P├ígina Web	En esta lecci├│n aprender├ís los fundamentos de HTML5 y comprender├ís c├│mo se construye la estructura b├ísica de una p├ígina web.\n\nHTML (HyperText Markup Language) es el lenguaje encargado de definir el contenido y la organizaci├│n de los elementos dentro de una web. Gracias a HTML podemos crear t├¡tulos, p├írrafos, im├ígenes, enlaces, listas y formularios.	1
+2	3	Introducción a HTML: Estructura Básica de una Página Web	En esta lección aprenderás los fundamentos de HTML5 y comprenderás cómo se construye la estructura básica de una página web.\n\nHTML (HyperText Markup Language) es el lenguaje encargado de definir el contenido y la organización de los elementos dentro de una web. Gracias a HTML podemos crear títulos, párrafos, imágenes, enlaces, listas y formularios.	1
 \.
 
 
@@ -342,10 +341,10 @@ COPY public.lessons (id, course_id, title, content, order_number) FROM stdin;
 
 COPY public.questions (id, test_id, question, option_a, option_b, option_c, correct_option) FROM stdin;
 1	2	Cuando en un documento HTML vemos la sentencia "<!DOCTYPE html> " se trata de un documento:	HTML 3.2	HTML 4.00	HTML 5	C
-2	2	┬┐Qu├® etiqueta utilizamos para definir el cuerpo del documento?	head	body	title	B
-3	2	┬┐Cu├íl es la forma correcta de escribir un comentario en HTML?	<!--┬á┬á -->	/*┬á┬á */	<┬í--┬á┬á -->	A
-4	2	Etiqueta para establecer un enlace o link a otra p├ígina web:	<a>	<link>	<img>	A
-5	2	┬┐Qu├® etiqueta es correcta para indicar un salto de l├¡nea?	<breakLine>	</br>	<br/>	C
+2	2	¿Qué etiqueta utilizamos para definir el cuerpo del documento?	head	body	title	B
+3	2	¿Cuál es la forma correcta de escribir un comentario en HTML?	<!--   -->	/*   */	<¡--   -->	A
+4	2	Etiqueta para establecer un enlace o link a otra página web:	<a>	<link>	<img>	A
+5	2	¿Qué etiqueta es correcta para indicar un salto de línea?	<breakLine>	</br>	<br/>	C
 \.
 
 
@@ -356,6 +355,7 @@ COPY public.questions (id, test_id, question, option_a, option_b, option_c, corr
 COPY public.results (id, user_id, test_id, score, completed_at) FROM stdin;
 1	2	2	4	2026-05-04 21:07:23.61679
 2	2	2	4	2026-05-04 21:11:27.221055
+3	7	2	5	2026-07-13 09:30:01.819969
 \.
 
 
@@ -364,7 +364,7 @@ COPY public.results (id, user_id, test_id, score, completed_at) FROM stdin;
 --
 
 COPY public.tests (id, course_id, title, description) FROM stdin;
-2	3	Unidad 1	Reconocimiento de las caracter├¡sticas del lenguaje de marcas
+2	3	Unidad 1	Reconocimiento de las características del lenguaje de marcas
 \.
 
 
@@ -376,6 +376,7 @@ COPY public.user_courses (user_id, course_id, enrolled_at) FROM stdin;
 2	3	2026-05-04 21:03:42.02241
 2	2	2026-05-04 21:06:37.753706
 2	1	2026-05-04 21:10:59.639951
+7	3	2026-07-13 09:28:12.773388
 \.
 
 
@@ -383,7 +384,7 @@ COPY public.user_courses (user_id, course_id, enrolled_at) FROM stdin;
 -- Name: courses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.courses_id_seq', 3, true);
+SELECT pg_catalog.setval('public.courses_id_seq', 4, true);
 
 
 --
@@ -411,7 +412,7 @@ SELECT pg_catalog.setval('public.questions_id_seq', 6, true);
 -- Name: results_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.results_id_seq', 2, true);
+SELECT pg_catalog.setval('public.results_id_seq', 3, true);
 
 
 --
@@ -553,5 +554,5 @@ ALTER TABLE ONLY public.user_courses
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 50VInwiQJddFY6LcUj7yRhnyFbX9qpCaF04LXpi8sTtDWeXEbjKViaZNDE50vD3
+\unrestrict VPG4nkmszG2MurlkdhyiQ8PHEqcqovFEjTVDXu8pcQVoFyMN9d8f7sRK231NfHn
 

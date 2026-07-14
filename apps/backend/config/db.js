@@ -22,6 +22,12 @@ poolConfig.idleTimeoutMillis = 30000;
 
 const pool = new Pool(poolConfig);
 
+// Neon (y otros proveedores con pooler/PgBouncer) pueden servir conexiones
+// con un search_path vacio; lo fijamos explicitamente en cada conexion nueva.
+pool.on('connect', (client) => {
+  client.query('SET search_path TO public');
+});
+
 async function query(sql, params) {
   const { rows } = await pool.query(sql, params);
   return rows;
