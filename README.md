@@ -6,7 +6,7 @@ Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express
 
 🔗 [EduTech — Aprende a tu ritmo](https://edutech-ujtr.onrender.com)
 
-> ⏳ El servicio corre en el plan gratuito de Render: si nadie lo visita durante ~15 minutos se "duerme", y la primera visita puede tardar 30-50 segundos en responder mientras despierta. Las capturas de abajo cubren ese hueco si prefieres no esperar.
+Corre en el plan gratuito de Render: tras ~15 minutos de inactividad el servicio se suspende y la primera visita tarda 30-50 segundos en responder.
 
 ## 👀 Guía rápida para revisar el proyecto
 
@@ -106,9 +106,7 @@ npm run dev
 
 ## Backup de base de datos
 
-<!-- TODO: edutech_backup.sql no esta presente en el repo actual (solo queda en commits antiguos). Regenerarlo con el comando de abajo y volver a subirlo, o quitar esta seccion si ya no se usa. -->
-
-El archivo `edutech_backup.sql` (no incluido actualmente en el repositorio — ver TODO arriba) es una copia exportada de la base de datos PostgreSQL `elearning_platform` que se genera bajo demanda.
+El archivo `edutech_backup.sql` es una copia exportada de la base de datos PostgreSQL `elearning_platform`, generada bajo demanda (no se mantiene versionada en el repositorio).
 
 Este backup incluye el esquema y los datos actuales de la plataforma: usuarios, roles, cursos, imagenes de portada, lecciones, adjuntos multimedia de lecciones, tests, preguntas, inscripciones y resultados.
 
@@ -193,8 +191,7 @@ Desde el backoffice el administrador puede:
 - Cambiar el rol de cualquier usuario
 - Eliminar usuarios
 
-> ⚠️ El login del backoffice (`ADMIN_USER`/`ADMIN_PASSWORD`) y la sesión de la app principal son sistemas de autenticación independientes. Para que la lista de usuarios cargue, primero inicia sesión en la app como **Demo Admin** (o cualquier cuenta con rol `administrador`) desde `/login`, y **luego**, en la misma pestaña, entra en `/admin` — ambas sesiones conviven en la misma cookie. Si entras directo a `/admin` sin haber iniciado sesión antes en la app, la sección de usuarios mostrará "No se pudieron cargar los usuarios".
-<!-- TODO: unificar ambos sistemas de login (que el login del backoffice también autentique con Passport, o que /api/users acepte session.isAdmin) -->
+El login del backoffice y la sesión de la app principal son sistemas de autenticación independientes que comparten cookie. Para que la lista de usuarios cargue, inicia sesión primero en la app (por ejemplo con Demo Admin) y luego entra en `/admin` en la misma pestaña; si entras directo a `/admin` sin sesión previa en la app, la sección de usuarios no cargará.
 
 ## Google OAuth — URIs autorizadas
 
@@ -238,30 +235,6 @@ En Google Cloud Console configura:
   - `PUT /api/users/:id`
   - `DELETE /api/users/:id`
 
-## Changelog
-
-### `refactor-ui`
-
-#### Routing y Layout
-- **Rutas anidadas con `<Outlet />`** — `Layout` migrado de `children` a `<Outlet />` de React Router. `ProtectedLayout` envuelve todas las rutas autenticadas y redirige a `/login` si no hay sesión.
-- **`/admin` fuera del `ProtectedLayout`** — Corregido bug por el que navegar a `/admin` sin sesión OAuth redirigía al login de usuario en lugar de mostrar el login del backoffice.
-- **Separación de vistas por rol en `/courses/:id`** — Renderiza `CourseDetailTeacher` para profesores/admins y `CourseDetailPage` para alumnos.
-
-#### `useAuth`
-- **Instancia única** — `useAuth()` solo se llama en `App.jsx`. El `user` y `logout` se pasan como props a `Layout` y `Header`, eliminando el parpadeo causado por múltiples instancias con estado independiente.
-- **Bucle infinito corregido** — El `useEffect` tenía `[user]` como dependencia, provocando re-fetch continuo. Corregido a `[]`.
-- **Logout simplificado** — Eliminado `redirect()` (solo válido en loaders/actions). `setUser(null)` provoca que `ProtectedLayout` redirija automáticamente.
-
-#### Header
-- Rediseñado con iconos de `lucide-react`.
-- Recibe `user` y `logout` como props en lugar de llamar a `useAuth()` directamente.
-
-#### Backoffice (`/admin`)
-- **Rediseño completo** — tema oscuro (`#0f172a`), sidebar fijo, topbar, tabla de usuarios con buscador en tiempo real y 4 tarjetas de estadísticas calculadas dinámicamente (Total, Alumnos, Profesores, Admins).
-- **Componentizado** en ficheros independientes dentro de `pages/admin/`: `AdminLogin`, `AdminSidebar`, `AdminTopbar`, `StatCard`, `UsersSection` (con `UserRow` interno).
-
----
-
 ## Producción
 
 ```bash
@@ -278,8 +251,6 @@ El proyecto se despliega como un **único Web Service en Render**: Express sirve
 npm install --include=dev && npm run build
 ```
 
-> Con `NODE_ENV=production` puesto (necesario para que Express sirva el build de React), `npm install` por defecto **omite** las `devDependencies` — y ahí vive `vite`, imprescindible para compilar el frontend. `--include=dev` fuerza a instalarlas igualmente durante el build, sin afectar al arranque en producción.
-
 **Start Command:**
 ```bash
 npm start
@@ -294,8 +265,8 @@ npm start
 | `DB_SSL` | `true` |
 | `SESSION_SECRET` | Un secreto largo y aleatorio |
 | `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Credenciales de Google Cloud Console |
-| `GOOGLE_CALLBACK_URL` | `https://<tu-app>.onrender.com/auth/google/callback` (el callback real se calcula en tiempo de ejecución, pero la variable debe existir para activar el login con Google) |
-| `CLIENT_ORIGIN` | `https://<tu-app>.onrender.com` |
+| `GOOGLE_CALLBACK_URL` | `https://edutech-ujtr.onrender.com/auth/google/callback` |
+| `CLIENT_ORIGIN` | `https://edutech-ujtr.onrender.com` |
 | `ADMIN_USER` / `ADMIN_PASSWORD` | Credenciales del backoffice |
 
 `PORT` no hace falta definirla, Render la inyecta automáticamente.
@@ -307,7 +278,7 @@ psql "postgresql://usuario:password@host/basededatos?sslmode=require" -f apps/ba
 psql "postgresql://usuario:password@host/basededatos?sslmode=require" -f edutech_cursos_ejercicios.sql
 ```
 
-**Google Cloud Console:** añade la URL de Render a los orígenes y redirecciones autorizadas (ver sección "Google OAuth — URIs autorizadas" más abajo, sustituyendo `localhost:5173` por el dominio de Render).
+**Google Cloud Console:** añade el dominio de Render a los orígenes y redirecciones autorizadas (ver "Google OAuth — URIs autorizadas").
 
 ## Scripts disponibles (raíz)
 
