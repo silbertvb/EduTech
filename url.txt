@@ -1,5 +1,3 @@
 URL de acceso a la aplicacion:
 
-https://edutech-production-703d.up.railway.app/
-
-
+https://edutech-ujtr.onrender.com/

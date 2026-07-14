@@ -4,8 +4,7 @@ Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express
 
 ## 🚀 Demo en vivo
 
-<!-- TODO: sustituir por la URL definitiva de Render cuando el despliegue esté verificado -->
-🔗 [EduTech — Aprende a tu ritmo](https://tu-app.onrender.com)
+🔗 [EduTech — Aprende a tu ritmo](https://edutech-ujtr.onrender.com)
 
 > ⏳ El servicio corre en el plan gratuito de Render: si nadie lo visita durante ~15 minutos se "duerme", y la primera visita puede tardar 30-50 segundos en responder mientras despierta. Las capturas de abajo cubren ese hueco si prefieres no esperar.
 
