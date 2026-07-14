@@ -2,7 +2,12 @@
 
 Plataforma e-learning full-stack con **React + Vite** en el frontend y **Express + PostgreSQL** en el backend, organizada como **monorepo con npm workspaces**.
 
-<!-- TODO: añadir sección "🚀 Demo en vivo" con el enlace una vez esté desplegado (migración a Neon + Render pendiente). -->
+## 🚀 Demo en vivo
+
+<!-- TODO: sustituir por la URL definitiva de Render cuando el despliegue esté verificado -->
+🔗 [EduTech — Aprende a tu ritmo](https://tu-app.onrender.com)
+
+> ⏳ El servicio corre en el plan gratuito de Render: si nadie lo visita durante ~15 minutos se "duerme", y la primera visita puede tardar 30-50 segundos en responder mientras despierta. Las capturas de abajo cubren ese hueco si prefieres no esperar.
 
 ## 👀 Guía rápida para revisar el proyecto
 
@@ -261,6 +266,44 @@ En Google Cloud Console configura:
 npm run client:build
 npm -w edutech run start
 ```
+
+## Despliegue (Neon + Render)
+
+El proyecto se despliega como un **único Web Service en Render**: Express sirve tanto la API (`/api/*`, `/auth/*`) como el build estático de React (`apps/client/dist`), ya que `apps/backend/app.js` ya contempla ese modo cuando `NODE_ENV=production`. La base de datos vive en **Neon** (PostgreSQL serverless).
+
+**Build Command:**
+```bash
+npm install && npm run build
+```
+
+**Start Command:**
+```bash
+npm start
+```
+
+**Variables de entorno a configurar en Render:**
+
+| Variable | Valor |
+|---|---|
+| `NODE_ENV` | `production` |
+| `DATABASE_URL` | Connection string de Neon (incluye `sslmode=require`) |
+| `DB_SSL` | `true` |
+| `SESSION_SECRET` | Un secreto largo y aleatorio |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Credenciales de Google Cloud Console |
+| `GOOGLE_CALLBACK_URL` | `https://<tu-app>.onrender.com/auth/google/callback` (el callback real se calcula en tiempo de ejecución, pero la variable debe existir para activar el login con Google) |
+| `CLIENT_ORIGIN` | `https://<tu-app>.onrender.com` |
+| `ADMIN_USER` / `ADMIN_PASSWORD` | Credenciales del backoffice |
+
+`PORT` no hace falta definirla, Render la inyecta automáticamente.
+
+**Base de datos en Neon:** crea el esquema y los datos demo ejecutando, en este orden, contra la connection string de Neon:
+
+```bash
+psql "postgresql://usuario:password@host/basededatos?sslmode=require" -f apps/backend/database/elearning_platform.sql
+psql "postgresql://usuario:password@host/basededatos?sslmode=require" -f edutech_cursos_ejercicios.sql
+```
+
+**Google Cloud Console:** añade la URL de Render a los orígenes y redirecciones autorizadas (ver sección "Google OAuth — URIs autorizadas" más abajo, sustituyendo `localhost:5173` por el dominio de Render).
 
 ## Scripts disponibles (raíz)
 

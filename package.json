@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BrunoBertola/EduTech_.git"
+    "url": "https://github.com/silbertvb/EduTech.git"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
     "concurrently": "^8.2.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.60.4"
+    "@rollup/rollup-linux-x64-gnu": "^4.60.4",
+    "@esbuild/linux-x64": "0.21.5"
   }
 }
